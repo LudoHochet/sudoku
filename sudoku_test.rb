@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require_relative 'sudoku'
+using ArrayExtensions
 
 class SudokuTest < Minitest::Test
   def test_it_finds_rows
@@ -16,7 +17,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_it_finds_columns
-    skip
+    # skip
     grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
             [6, 7, 2, 1, 9, 5, 3, 4, 8],
             [1, 9, 8, 3, 4, 2, 5, 6, 7],
@@ -39,7 +40,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_it_finds_9_regions
-    skip
+    # skip
     grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
             [6, 7, 2, 1, 9, 5, 3, 4, 8],
             [1, 9, 8, 3, 4, 2, 5, 6, 7],
@@ -53,7 +54,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_it_finds_the_third_region
-    skip
+    # skip
     grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
             [6, 7, 2, 1, 9, 5, 3, 4, 8],
             [1, 9, 8, 3, 4, 2, 5, 6, 7],
@@ -68,7 +69,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_it_finds_the_forth_region
-    skip
+    # skip
     grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
             [6, 7, 2, 1, 9, 5, 3, 4, 8],
             [1, 9, 8, 3, 4, 2, 5, 6, 7],
@@ -83,7 +84,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_forth_row_is_valid
-    skip
+    # skip
     grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
             [6, 7, 2, 1, 9, 5, 3, 4, 8],
             [1, 9, 8, 3, 4, 2, 5, 6, 7],
@@ -97,7 +98,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_forth_col_is_valid
-    skip
+    # skip
     grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
             [6, 7, 2, 1, 9, 5, 3, 4, 8],
             [1, 9, 8, 3, 4, 2, 5, 6, 7],
@@ -111,7 +112,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_third_region_is_valid
-    skip
+    # skip
     grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
             [6, 7, 2, 1, 9, 5, 3, 4, 8],
             [1, 9, 8, 3, 4, 2, 5, 6, 7],
@@ -125,7 +126,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_it_is_valid_grid
-    skip
+    # skip
     grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
             [6, 7, 2, 1, 9, 5, 3, 4, 8],
             [1, 9, 8, 3, 4, 2, 5, 6, 7],
@@ -139,7 +140,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_it_is_invalid_grid
-    skip
+    # skip
     grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
             [6, 7, 2, 1, 9, 0, 3, 4, 9],
             [1, 0, 0, 3, 4, 2, 5, 6, 0],
@@ -153,7 +154,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_it_is_another_valid_grid
-    skip
+    # skip
     grid = [[1, 3, 2, 5, 7, 9, 4, 6, 8],
             [4, 9, 8, 2, 6, 1, 3, 7, 5],
             [7, 5, 6, 3, 8, 4, 2, 1, 9],
@@ -167,7 +168,7 @@ class SudokuTest < Minitest::Test
   end
 
   def test_it_is_another_invalid_grid_2
-    skip
+    # skip
     grid = [[1, 3, 2, 5, 7, 9, 4, 6, 8],
             [4, 9, 8, 2, 6, 1, 3, 7, 5],
             [7, 5, 6, 3, 8, 4, 2, 1, 9],
@@ -182,7 +183,7 @@ class SudokuTest < Minitest::Test
 
 
   def test_it_is_incomplete_invalid_grid
-    skip
+    # skip
     grid = [[1, 3, 2, 5, 7, 9, 4, 6, 8],
             [4, 9, 8, 2, 6, 0, 3, 7, 5],
             [7, 0, 6, 3, 8, 0, 2, 1, 9],
@@ -197,7 +198,7 @@ class SudokuTest < Minitest::Test
 
 
   def test_it_is_invalid_grid_with_repeated_diagonals
-    skip
+    # skip
     grid = [[1, 2, 3, 4, 5, 6, 7, 8, 9],
             [2, 3, 4, 5, 6, 7, 8, 9, 1],
             [3, 4, 5, 6, 7, 8, 9, 1, 2],
@@ -212,7 +213,7 @@ class SudokuTest < Minitest::Test
 
 
   def test_it_is_invalid_grid_with_invalid_number
-    skip
+    # skip
     grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
             [6, 7, 2, 1, 9, 0, 3, 4, 9],
             [1, 0, 0, 3, 4, 2, 5, 6, 0],
@@ -223,5 +224,33 @@ class SudokuTest < Minitest::Test
             [2, 8, 7, 4, 1, 9, 6, 3, 5],
             [0, 0, 0, 0, 0, 0, 0,0, 45]]
     assert_equal 'Try again!', Sudoku.done_or_not(grid)
+  end
+
+  def test_it_finds_coordinates_of_one_missing_digit
+    # skip
+    grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
+            [6, 7, 2, 1, 9, 5, 3, 4, 8],
+            [1, 9, 8, 3, 4, 2, 5, 6, 7],
+            [8, 5, 0, 7, 6, 1, 4, 2, 3],
+            [4, 2, 6, 8, 5, 3, 7, 9, 1],
+            [7, 1, 3, 9, 2, 4, 8, 5, 6],
+            [9, 6, 1, 5, 3, 7, 2, 8, 4],
+            [2, 8, 7, 4, 1, 9, 6, 3, 5],
+            [3, 4, 5, 2, 8, 6, 1, 7, 9]]
+    assert_equal [[2, 3]], Sudoku.new(grid).find_empty_positions
+  end
+
+  def test_it_finds_coordinates_of_three_missing_digit
+    # skip
+    grid = [[5, 3, 4, 6, 7, 8, 9, 1, 2],
+            [6, 7, 2, 1, 9, 5, 3, 4, 8],
+            [1, 9, 8, 3, 4, 2, 5, 6, 7],
+            [8, 5, 0, 7, 6, 1, 4, 2, 3],
+            [4, 2, 6, 8, 5, 3, 0, 9, 1],
+            [7, 1, 3, 9, 2, 4, 8, 5, 6],
+            [9, 6, 1, 5, 3, 7, 2, 8, 4],
+            [2, 8, 7, 4, 1, 9, 6, 3, 5],
+            [3, 4, 5, 2, 8, 6, 1, 0, 9]]
+    assert_equal [[2, 3], [6, 4], [7, 8]], Sudoku.new(grid).find_empty_positions
   end
 end
