@@ -67,16 +67,16 @@ class Sudoku
   end
 
   def check_row(row, digit)
-    rows[row].include? digit
+    !rows[row].include? digit
   end
 
   def check_column(col, digit)
-    columns[col].include? digit
+    !columns[col].include? digit
   end
 
   def check_region(row, col, digit)
     region_index = region_index(row, col)
-    regions[region_index].include? digit
+    !regions[region_index].include? digit
   end
 
   def check_value(row, col, digit)
@@ -88,7 +88,14 @@ class Sudoku
   end
 
   def fill_all
-  
+    empty_positions = find_empty_positions
+    until empty_positions.empty?
+      row, col = empty_positions.pop
+      (1..9).each do |digit|
+        @grid[row][col] = digit if check_value(row, col, digit)
+      end
+    end
+    @grid
   end
 
 end
