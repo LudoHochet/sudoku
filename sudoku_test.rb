@@ -237,7 +237,7 @@ class SudokuTest < Minitest::Test
             [9, 6, 1, 5, 3, 7, 2, 8, 4],
             [2, 8, 7, 4, 1, 9, 6, 3, 5],
             [3, 4, 5, 2, 8, 6, 1, 7, 9]]
-    assert_equal [[2, 3]], Sudoku.new(grid).find_empty_positions
+    assert_equal [[3, 2]], Sudoku.new(grid).find_empty_positions
   end
 
   def test_it_finds_coordinates_of_three_missing_digit
@@ -251,7 +251,7 @@ class SudokuTest < Minitest::Test
             [9, 6, 1, 5, 3, 7, 2, 8, 4],
             [2, 8, 7, 4, 1, 9, 6, 3, 5],
             [3, 4, 5, 2, 8, 6, 1, 0, 9]]
-    assert_equal [[2, 3], [6, 4], [7, 8]], Sudoku.new(grid).find_empty_positions
+    assert_equal [[3, 2], [4, 6], [8, 7]], Sudoku.new(grid).find_empty_positions
   end
 
   def test_it_can_fill_one_missing_digit
