@@ -87,47 +87,51 @@ class Sudoku
 
   def fill_all
     empty_positions = find_empty_positions
-    # i = 0
-    #
-    # while i < empty_positions.length
-    #   row = empty_positions[i][0]
-    #   column = empty_positions[i][1]
-    #   number = @grid[row][column] + 1
-    #   found = false
-    #
-    #   while !found && number < 10
-    #     if check_value(row, column, number)
-    #       found = true
-    #       @grid[row][column] = number
-    #       i += 1
-    #     else
-    #       number += 1
-    #     end
-    #   end
-    #
-    #   if !found
-    #     @grid[row][column] = 0
-    #     i -= 1
-    #   end
-    # end
-    #
-    # @grid
-    an_empty_digit_not_filled = true
-    until empty_positions.empty?
-      row, col = empty_positions.pop
+    i = 0
+
+    while i < empty_positions.length
+      row, column = empty_positions[i]
+      found = false
+
       (1..9).each do |digit|
-        if check_value(row, col, digit)
-          @grid[row][col] = digit
-          an_empty_digit_not_filled = false
+        if check_value(row, column, digit)
+          found = true
+          @grid[row][column] = digit
+          i += 1
+          break
         end
       end
-      if an_empty_digit_not_filled
-        @grid[row][col] = 0
-        empty_positions = find_empty_positions
-        an_empty_digit_not_filled = true
+
+      unless found
+        @grid[row][column] = 0
+        i -= 1
       end
     end
+
     @grid
+      # found = false
+      #
+      # until empty_positions.empty?
+      #   row, col = empty_positions.last
+      #   found = false
+      #   p empty_positions.size
+      #   (1..9).each do |digit|
+      #     if check_value(row, col, digit)
+      #       @grid[row][col] = digit
+      #       found = true
+      #       row_next, col_next = empty_positions.pop unless empty_positions.empty?
+      #       break
+      #     end
+      #   end
+      #
+      #   if !found
+      #     @grid[row][col] = 0
+      #     empty_positions << [row, col]
+      #     # found = false
+      #   end
+      #
+      # end
+      # @grid
   end
 
 end

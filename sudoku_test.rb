@@ -333,14 +333,32 @@ class SudokuTest < Minitest::Test
     # skip
     grid_30 = [[5, 3, 0, 6, 0, 8, 0, 1, 2],
                [6, 0, 2, 1, 0, 5, 0, 4, 8],
-               [0, 9, 8, 0, 4, 2, 5, 0, 7],
+               [0, 9, 8, 0, 4, 0, 5, 0, 7],
                [8, 0, 0, 7, 6, 1, 4, 2, 0],
-               [0, 2, 6, 8, 0, 3, 0, 9, 1],
+               [0, 2, 0, 8, 0, 3, 0, 9, 1],
                [0, 1, 0, 9, 2, 0, 8, 5, 6],
-               [9, 0, 1, 0, 3, 7, 2, 8, 0],
+               [9, 0, 1, 0, 3, 7, 0, 8, 0],
                [2, 8, 7, 4, 0, 0, 6, 0, 5],
                [0, 0, 5, 2, 8, 6, 1, 0, 9]]
+    p Sudoku.new(grid_30).find_empty_positions.size
     filled_grid = Sudoku.new(grid_30).fill_all
+    assert_equal 'Finished!', Sudoku.done_or_not(filled_grid)
+  end
+
+  def test_it_can_fill_38_missing_digit
+    # skip
+    grid_38 = [[0, 3, 0, 6, 0, 8, 0, 1, 0],
+               [6, 0, 2, 1, 0, 5, 0, 0, 8],
+               [0, 9, 0, 0, 4, 2, 5, 0, 7],
+               [8, 0, 0, 7, 6, 0, 4, 2, 0],
+               [0, 2, 6, 0, 0, 3, 0, 0, 1],
+               [0, 1, 0, 9, 2, 0, 8, 5, 6],
+               [9, 0, 1, 0, 0, 7, 0, 8, 0],
+               [2, 8, 0, 4, 0, 0, 6, 0, 5],
+               [0, 0, 5, 2, 8, 0, 1, 0, 9]]
+    p Sudoku.new(grid_38).find_empty_positions.size
+    filled_grid = Sudoku.new(grid_38).fill_all
+    pp filled_grid
     assert_equal 'Finished!', Sudoku.done_or_not(filled_grid)
   end
 
