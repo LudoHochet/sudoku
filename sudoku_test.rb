@@ -329,5 +329,20 @@ class SudokuTest < Minitest::Test
     assert_equal 'Finished!', Sudoku.done_or_not(filled_grid)
   end
 
+  def test_it_can_fill_30_missing_digit
+    # skip
+    grid_30 = [[5, 3, 0, 6, 0, 8, 0, 1, 2],
+               [6, 0, 2, 1, 0, 5, 0, 4, 8],
+               [0, 9, 8, 0, 4, 2, 5, 0, 7],
+               [8, 0, 0, 7, 6, 1, 4, 2, 0],
+               [0, 2, 6, 8, 0, 3, 0, 9, 1],
+               [0, 1, 0, 9, 2, 0, 8, 5, 6],
+               [9, 0, 1, 0, 3, 7, 2, 8, 0],
+               [2, 8, 7, 4, 0, 0, 6, 0, 5],
+               [0, 0, 5, 2, 8, 6, 1, 0, 9]]
+    filled_grid = Sudoku.new(grid_30).fill_all
+    assert_equal 'Finished!', Sudoku.done_or_not(filled_grid)
+  end
+
 
 end

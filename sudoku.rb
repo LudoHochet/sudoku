@@ -89,7 +89,7 @@ class Sudoku
     empty_positions = find_empty_positions
     i = 0
 
-    while i < empty_positions.length && i >= 0
+    while i < empty_positions.length
       row = empty_positions[i][0]
       column = empty_positions[i][1]
       number = @grid[row][column] + 1
@@ -116,7 +116,7 @@ class Sudoku
 
       if !found
         @grid[row][column] = 0
-        i = -1
+        i -= 1
       end
     end
 
