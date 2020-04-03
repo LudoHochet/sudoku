@@ -87,60 +87,47 @@ class Sudoku
 
   def fill_all
     empty_positions = find_empty_positions
-    i = 0
-
-    while i < empty_positions.length
-      row = empty_positions[i][0]
-      column = empty_positions[i][1]
-      number = @grid[row][column] + 1
-      found = false
-      # p "i début boucle: #{i}"
-
-      while !found && number < 10
-        if check_value(row, column, number)
-          found = true
-          @grid[row][column] = number
-          # p "#{number} rajouté ligne #{row} col #{column}"
-          # p "i #{i}"
-          # p '--------------------------------------------------'
-          # pp @grid
-          # p '--------------------------------------------------'
-          # pp empty_positions
-          # p '--------------------------------------------------'
-
-          i += 1
-        else
-          number += 1
-        end
-      end
-
-      if !found
-        @grid[row][column] = 0
-        i -= 1
-      end
-    end
-
-    @grid
-    # an_empty_digit_not_filled = true
-    # until empty_positions.empty?
-    #   # an_empty_digit_not_filled = true
-    #   puts "empty_positions avant #{empty_positions}"
-    #   row, col = empty_positions.pop
-    #   puts "empty_positions après le pop #{empty_positions}"
-    #   (1..9).each do |digit|
-    #     if check_value(row, col, digit)
-    #       @grid[row][col] = digit
-    #       an_empty_digit_not_filled = false
+    # i = 0
+    #
+    # while i < empty_positions.length
+    #   row = empty_positions[i][0]
+    #   column = empty_positions[i][1]
+    #   number = @grid[row][column] + 1
+    #   found = false
+    #
+    #   while !found && number < 10
+    #     if check_value(row, column, number)
+    #       found = true
+    #       @grid[row][column] = number
+    #       i += 1
+    #     else
+    #       number += 1
     #     end
     #   end
-    #   if an_empty_digit_not_filled
-    #     puts "(#{row}, #{col})"
-    #     @grid[row][col] = 0
-    #     p @grid
-    #     empty_positions = find_empty_positions
+    #
+    #   if !found
+    #     @grid[row][column] = 0
+    #     i -= 1
     #   end
     # end
+    #
     # @grid
+    an_empty_digit_not_filled = true
+    until empty_positions.empty?
+      row, col = empty_positions.pop
+      (1..9).each do |digit|
+        if check_value(row, col, digit)
+          @grid[row][col] = digit
+          an_empty_digit_not_filled = false
+        end
+      end
+      if an_empty_digit_not_filled
+        @grid[row][col] = 0
+        empty_positions = find_empty_positions
+        an_empty_digit_not_filled = true
+      end
+    end
+    @grid
   end
 
 end
