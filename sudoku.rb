@@ -85,54 +85,76 @@ class Sudoku
     (row / 3) * 3 + (col / 3)
   end
 
-  def fill_all
-    empty_positions = find_empty_positions
-    i = 0
-
-    while i < empty_positions.length
-      row, column = empty_positions[i]
-      found = false
-
-      (1..9).each do |digit|
-        if check_value(row, column, digit)
-          found = true
-          @grid[row][column] = digit
-          i += 1
-          break
-        end
-      end
-
-      unless found
-        @grid[row][column] = 0
-        i -= 1
-      end
-    end
-
-    @grid
-      # found = false
-      #
-      # until empty_positions.empty?
-      #   row, col = empty_positions.last
-      #   found = false
-      #   p empty_positions.size
-      #   (1..9).each do |digit|
-      #     if check_value(row, col, digit)
-      #       @grid[row][col] = digit
-      #       found = true
-      #       row_next, col_next = empty_positions.pop unless empty_positions.empty?
-      #       break
-      #     end
-      #   end
-      #
-      #   if !found
-      #     @grid[row][col] = 0
-      #     empty_positions << [row, col]
-      #     # found = false
-      #   end
-      #
-      # end
-      # @grid
+  def with(row, column, digit)
+    new_grid = @grid.map &:dup
+    new_grid[row][column] = digit
+    Sudoku.new(new_grid)
   end
+
+  def possibilities
+    if (row, column = self.find_empty_positions.sample)
+      (1..9).select { |digit| self.check_value(row, column, digit) }
+          .map { |digit| self.with(row, column, digit) }
+    else
+      []
+    end
+  end
+
+  def fill_all
+    @grid = Backtracker
+                .new(state: self, next_states: :possibilities.to_proc, solved: :grid_valid?.to_proc)
+                .solve
+                .grid
+  end
+
+    # def fill_all
+    #   empty_positions = find_empty_positions
+    #   i = 0
+    #
+    #   while i < empty_positions.length
+    #     row, column = empty_positions[i]
+    #     found = false
+    #
+    #     (1..9).each do |digit|
+    #       if check_value(row, column, digit)
+    #         found = true
+    #         @grid[row][column] = digit
+    #         i += 1
+    #         break
+    #       end
+    #     end
+    #
+    #     unless found
+    #       @grid[row][column] = 0
+    #       i -= 1
+    #     end
+    #   end
+    #
+    #   @grid
+    #     # found = false
+    #     #
+    #     # until empty_positions.empty?
+    #     #   row, col = empty_positions.last
+    #     #   found = false
+    #     #   p empty_positions.size
+    #     #   (1..9).each do |digit|
+    #     #     if check_value(row, col, digit)
+    #     #       @grid[row][col] = digit
+    #     #       found = true
+    #     #       row_next, col_next = empty_positions.pop unless empty_positions.empty?
+    #     #       break
+    #     #     end
+    #     #   end
+    #     #
+    #     #   if !found
+    #     #     @grid[row][col] = 0
+    #     #     empty_positions << [row, col]
+    #     #     # found = false
+    #     #   end
+    #     #
+    #     # end
+    #     # @grid
+    # end
 
 end
 
